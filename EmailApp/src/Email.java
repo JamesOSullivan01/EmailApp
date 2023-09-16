@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Set;
 
 public class Email {
     private String firstName;
@@ -6,7 +7,8 @@ public class Email {
     private String password;
     private String department;
     private int defaultPasswordLength = 8;
-    private int mailboxCapacity;
+    private int mailboxCapacity = 500;
+    private String email;
     private String alternateEmail;
 
     // Constructor to recieve first and lastname
@@ -25,12 +27,26 @@ public class Email {
         return new String(password);
     }
 
-    // call a method that returns a random password
+//    private String generateCustomEmail(String customEmail){
+//        customEmail = this.firstName + "." + this.lastName + "@" + this.department + ".company.com";
+//    }
 
 
     // set mailbox capacity
+    public void setMailboxCapacity(int capacity){
+        this.mailboxCapacity = capacity;
+    }
 
     // set alt email
+
+    public void setAlternateEmail(String altEmail){
+        this.alternateEmail = altEmail;
+    }
+
+    // change password
+    public void changepassword(String password){
+        this.password = password;
+    }
 
     public Email(String firstName, String lastName){
         //this.firstName refers to the class var, the one after the equal sign refers to the local var in the arguments
@@ -38,18 +54,20 @@ public class Email {
         this.lastName = lastName;
         System.out.println("Owner of email: " + this.firstName + " " + this.lastName);
 
+        // setting the dept from the user input and caslling that method in this constructor.
         this.department = setDepartment();
         System.out.println("Department: " + this.department);
 
+        // call a method that returns a random password
         this.password = randomPassword(defaultPasswordLength);
         System.out.println("Your password is: " + this.password);
 
+        //combine elements to generate email
+        email = firstName.toLowerCase() + "." + lastName.toLowerCase() + "@" + department.toLowerCase() + ".company.com";
+        System.out.println("Your email is: " + email);
     }
 
-    // call a method asking for dept and return dept
-
-
-    // ask for dept
+    // Set dept
     private String setDepartment(){
         System.out.print("Enter the dept\nOne for sales\ntwo for development\nthree for accoutning\nfour for nothing\nEnter Department code:\n");
         Scanner sc = new Scanner(System.in);
@@ -66,4 +84,18 @@ public class Email {
     }
 
 
+
+    @Override
+    public String toString() {
+        return "Email{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", department='" + department + '\'' +
+                ", defaultPasswordLength=" + defaultPasswordLength +
+                ", mailboxCapacity=" + mailboxCapacity +
+                ", email='" + email + '\'' +
+                ", alternateEmail='" + alternateEmail + '\'' +
+                '}';
+    }
 }
