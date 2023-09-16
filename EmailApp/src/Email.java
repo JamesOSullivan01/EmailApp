@@ -83,6 +83,10 @@ public class Email {
         }
     }
 
+    public int getMailboxCapacity(){return mailboxCapacity;}
+    public String getAlternateEmail(){return alternateEmail;}
+    public String getPassword(){return password;}
+
 
 
     @Override
